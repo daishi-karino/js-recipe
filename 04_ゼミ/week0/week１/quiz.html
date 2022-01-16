@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WebExpertコーステンプレート</title>
+  </head>
+  <body>
+    <h1>私の好きなスポーツは？</h1>
+    <button id="basket">バスケットボール</button>
+    <button id="baseball">野球</button>
+    <button id="tennis">テニス</button>
+    <!-- 解答表示用divを作る -->
+    <div id= "sport"><div>
+
+    <script>
+      //buttonのidを取ってくる
+      const basket = document.getElementById("basket");
+      const baseball = document.getElementById("baseball");
+      const tennis = document.getElementById("tennis");
+      // 解答表示用divを取ってくる
+      const sport = document.getElementById("sport");
+
+      //onclickした時の処理
+      basket.onclick = function () {
+        console.log("正解です！やったね！！！");
+        // 解答表示用divを変更する
+        sport.textContent = "正解です！やったね！！！"
+      };
+
+      baseball.onclick = function () {
+        console.log("残念でした。違いまーす");
+        // 解答表示用divを変更する
+        sport.textContent = "残念でした。違いまーす"
+      };
+
+      tennis.onclick = function () {
+        console.log("残念でした。違いまーす");
+        // 解答表示用divを変更する
+        sport.textContent = "残念でした。違いまーす"
+      };
+      //
+    </script>
+  </body>
+</html>
