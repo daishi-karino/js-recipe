@@ -28,3 +28,12 @@ const createCard = function (text) {
 
   return card
 }
+
+window.document.onkeydown = function (event) {
+  if (event.key === "Enter") {
+    const card = createCard(inputElement.value)
+    container.append(card)
+
+    inputElement.value = ""
+  }
+}

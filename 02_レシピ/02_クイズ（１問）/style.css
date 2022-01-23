@@ -7,3 +7,7 @@
 .hidden {
   display: none;
 }
+.button {
+  background-color: greenyellow;
+  width:70px;
+}

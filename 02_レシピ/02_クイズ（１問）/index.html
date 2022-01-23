@@ -12,9 +12,10 @@
       <h2 id="quiz-text"></h2>
       <img id="quiz-image" />
       <div id="choices-container">
-        <button id="choice-1"></button>
-        <button id="choice-2"></button>
-        <button id="choice-3"></button>
+        <div id="button0"></div>
+        <div id="button1"></div>
+        <div id="button2"></div>
+        <div id="button3"></div>
       </div>
       <div id="feedback"></div>
       <button id="next-quiz">次の問題へ</button>
@@ -23,3 +24,6 @@
     <script src="./main.js"></script>
   </body>
 </html>
+// 選択肢（ボタン）の中身を表示 //for (let i=0;i <= quiz.choices.length; i++){
+// const button[i] = document.createElement("button") // button[i].textContent =
+quiz.choices[0].text // button[i].appendChild(button[i]) //}
