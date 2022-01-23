@@ -10,9 +10,11 @@
     <h1>自販機</h1>
     <section>
       <h3>自販機にお金を入れる</h3>
-      <button id="add-button-100">
-        100円入れる
-      </button>
+      <p>金額を決めてください</p>
+      <input type="text" id="inputMoney" /><br />
+      <button id="add-button-100">100円入れる</button>
+      <button id="add-button-money">お金を入れる</button>
+      <button id="otsuri-lever">お釣り</button>
       <h4>↓財布↓</h4>
       <div id="display-saifu">1000</div>
       <h4>↓投入金額↓</h4>
@@ -20,7 +22,8 @@
     </section>
     <section>
       <h3>商品を買う</h3>
-      <button id="buy-button-tea">お茶(100円)</button>
+      <button id="buy-button-tea" disabled>お茶(100円)</button>
+      <button id="buy-button-beer" disabled>ビール(150円)</button>
     </section>
     <section>
       <h3>買った商品</h3>
@@ -28,34 +31,88 @@
     </section>
     <script>
       // HTML要素を取得する
-      const buyButtonTea = document.getElementById("buy-button-tea");
-      const displayItems = document.getElementById("display-items");
-      const addButton100 = document.getElementById("add-button-100");
-      const displaySaifu = document.getElementById("display-saifu");
+      const buyButtonTea = document.getElementById("buy-button-tea")
+      const buyButtonBeer = document.getElementById("buy-button-beer")
+      const displayItems = document.getElementById("display-items")
+      const addButton100 = document.getElementById("add-button-100")
+      const displaySaifu = document.getElementById("display-saifu")
       const displayJihankiMoney = document.getElementById(
-        "display-jihanki-money"
-      );
+        "display-jihanki-money",
+      )
+      const otsuriLever = document.getElementById("otsuri-lever")
+      const addButtonMoney = document.getElementById("add-button-money")
 
-      let saifu = 1000;
-      let jihankiMoney = 0;
+      let saifu = 1000
+      let jihankiMoney = 0
 
       addButton100.onclick = function () {
         if (saifu >= 100) {
-          saifu -= 100;
-          jihankiMoney += 100;
-          displaySaifu.textContent = saifu;
-          displayJihankiMoney.textContent = jihankiMoney;
+          saifu -= 100
+          jihankiMoney += 100
+          if (jihankiMoney >= 150) {
+            buyButtonBeer.disabled = false
+          } else if (jihankiMoney >= 100) {
+            buyButtonTea.disabled = false
+          }
+          displaySaifu.textContent = saifu
+          displayJihankiMoney.textContent = jihankiMoney
         }
-      };
+      }
+
+      addButtonMoney.onclick = function () {
+        const inputValue = Number(inputMoney.value)
+        if (saifu >= inputValue) {
+          saifu -= inputValue
+          jihankiMoney += inputValue
+          if (jihankiMoney >= 150) {
+            buyButtonBeer.disabled = false
+          } else if (jihankiMoney >= inputValue) {
+            buyButtonTea.disabled = false
+          }
+          displaySaifu.textContent = saifu
+          displayJihankiMoney.textContent = jihankiMoney
+        }
+      }
+
+      otsuriLever.onclick = function () {
+        saifu += jihankiMoney
+        jihankiMoney = 0
+        buyButtonTea.disabled = true
+        buyButtonBeer.disabled = true
+        displaySaifu.textContent = saifu
+        displayJihankiMoney.textContent = jihankiMoney
+      }
 
       // buyButtonTea を押した時の処理
       buyButtonTea.onclick = function () {
         if (jihankiMoney >= 100) {
-          displayItems.textContent += "🍵";
-          jihankiMoney -= 100;
-          displayJihankiMoney.textContent = jihankiMoney;
+          displayItems.textContent += "🍵"
+          jihankiMoney -= 100
+          displayJihankiMoney.textContent = jihankiMoney
+          if (jihankiMoney < 100) {
+            buyButtonTea.disabled = true
+          } else if (jihankiMoney < 150) {
+            buyButtonBeer.disabled = true
+          }
+          displaySaifu.textContent = saifu
+          displayJihankiMoney.textContent = jihankiMoney
         }
-      };
+      }
+
+      buyButtonBeer.onclick = function () {
+        if (jihankiMoney >= 150) {
+          displayItems.textContent += "🍺"
+          jihankiMoney -= 150
+          displayJihankiMoney.textContent = jihankiMoney
+          if (jihankiMoney < 100) {
+            buyButtonTea.disabled = true
+          } else if (jihankiMoney < 150) {
+            buyButtonBeer.disabled = true
+          }
+          displaySaifu.textContent = saifu
+          displayJihankiMoney.textContent = jihankiMoney
+        }
+      }
     </script>
   </body>
 </html>
