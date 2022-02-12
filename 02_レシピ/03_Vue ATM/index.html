@@ -8,8 +8,24 @@
   </head>
   <body>
     <div id="app">
-      <input type="number" v-model="nyuryokugaku" />
-      <div>入力額:{{ money }}</div>
+      <h2>入力画面</h2>
+      <input type="number" v-model="inputMoney" />
+      <div>入力額:{{ inputMoney }}</div>
+      <button v-on:click="nyukin">入金</button>
+      <button v-on:click="syukkin" v-bind:disabled="disabled">出金</button>
+
+      <h2>口座残高</h2>
+      <div>残高:{{ zandaka }}円</div>
+
+      <h2>取引記録</h2>
+      <div v-if="records[1]">
+        <div v-for="r in records">
+          <div>日付:{{ r.date }}（日本標準時）</div>
+          <div>操作:{{ r.type }}</div>
+          <div>金額:{{ r.money }}</div>
+        </div>
+      </div>
+      <div v-else>取引ないよ！</div>
     </div>
 
     <script src="https://unpkg.com/vue@3.2.20"></script>
