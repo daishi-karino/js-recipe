@@ -2,15 +2,14 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vueの基礎</title>
+    <title>Document</title>
   </head>
   <body>
-    <h1>Vueの基礎</h1>
-    <!-- ↓ここに追加する -->
     <div id="app">
-      <div>{{ count }}</div>
-      <button v-on:click="countUp">+1</button>
+      <input type="number" v-model="nyuryokugaku" />
+      <div>入力額:{{ money }}</div>
     </div>
 
     <script src="https://unpkg.com/vue@3.2.20"></script>
